@@ -9,7 +9,7 @@
             display: block;
             margin: auto;
             width: 80vh; /* Adjust size as needed */
-            height: 30vh; /* Adjust size as needed */
+            height: 40vh; /* Adjust size as needed */
         }
         .node {
             fill: #f0f0f0;
@@ -21,9 +21,10 @@
             text-anchor: middle;
             dominant-baseline: middle;
             pointer-events: none;
-            font-size: 3px; /* Adjust the font-size as needed */
+            font-size: 4px; /* Adjust the font-size as needed */
         }
         .link {
+            fill: none;
             stroke: #000;
             stroke-width: 2;
         }
@@ -31,28 +32,24 @@
 </head>
 <body>
 
-<svg class="flowchart-svg" viewBox="0 0 180 60">
+<svg class="flowchart-svg" viewBox="0 0 180 100">
     <!-- Links -->
-    <line class="link" x1="50" y1="30" x2="90" y2="30" />
-    <line class="link" x1="90" y1="30" x2="130" y2="30" />
+    <path class="link" d="M 90 25 Q 70 50 50 70" />
+    <path class="link" d="M 90 25 Q 90 50 90 70" />
+    <path class="link" d="M 90 25 Q 110 50 130 70" />
 
     <!-- Nodes -->
-    <circle class="node" cx="50" cy="30" r="10" onclick="location.href='node1.html'"/>
-    <circle class="node" cx="90" cy="30" r="10" onclick="location.href='index.html'"/>
-    <circle class="node" cx="130" cy="30" r="10" onclick="location.href='node2.html'"/>
+    <circle class="node" cx="90" cy="25" r="10" onclick="location.href='index.html'"/>
+    <circle class="node" cx="50" cy="70" r="10" onclick="location.href='node1.html'"/>
+    <circle class="node" cx="90" cy="70" r="10" onclick="location.href='node2.html'"/>
+    <circle class="node" cx="130" cy="70" r="10" onclick="location.href='node3.html'"/>
 
     <!-- Text -->
-    <text class="node-text" x="50" y="30">Node 1</text>
-    <text class="node-text" x="90" y="30">Center</text>
-    <text class="node-text" x="130" y="30">Node 2</text>
+    <text class="node-text" x="90" y="25">Center</text>
+    <text class="node-text" x="50" y="70">Node 1</text>
+    <text class="node-text" x="90" y="70">Node 2</text>
+    <text class="node-text" x="130" y="70">Node 3</text>
 </svg>
-
-<script>
-// Redirect to node3.html when the third node is clicked (since SVG doesn't handle href)
-document.querySelector('.node:nth-child(4)').addEventListener('click', function() {
-    window.location.href = 'node3.html';
-});
-</script>
 
 </body>
 </html>
