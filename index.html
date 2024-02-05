@@ -8,8 +8,8 @@
         .flowchart-svg {
             display: block;
             margin: auto;
-            width: 80vh; /* Adjust size as needed */
-            height: 40vh; /* Adjust size as needed */
+            max-width: 100%; /* Ensures SVG is not bigger than the screen */
+            height: auto; /* Maintains aspect ratio */
         }
         .node {
             fill: #f0f0f0;
@@ -34,21 +34,21 @@
 
 <svg class="flowchart-svg" viewBox="0 0 180 100">
     <!-- Links -->
-    <path class="link" d="M 90 25 Q 70 50 50 70" />
-    <path class="link" d="M 90 25 Q 90 50 90 70" />
-    <path class="link" d="M 90 25 Q 110 50 130 70" />
+    <path class="link" d="M 90 20 C 70 45 70 45 50 60" />
+    <path class="link" d="M 90 20 C 90 45 90 45 90 60" />
+    <path class="link" d="M 90 20 C 110 45 110 45 130 60" />
 
     <!-- Nodes -->
-    <circle class="node" cx="90" cy="25" r="10" onclick="location.href='index.html'"/>
-    <circle class="node" cx="50" cy="70" r="10" onclick="location.href='node1.html'"/>
-    <circle class="node" cx="90" cy="70" r="10" onclick="location.href='node2.html'"/>
-    <circle class="node" cx="130" cy="70" r="10" onclick="location.href='node3.html'"/>
+    <circle class="node" cx="90" cy="20" r="10" onclick="location.href='index.html'"/>
+    <circle class="node" cx="50" cy="60" r="10" onclick="location.href='node1.html'"/>
+    <circle class="node" cx="90" cy="60" r="10" onclick="location.href='node2.html'"/>
+    <circle class="node" cx="130" cy="60" r="10" onclick="location.href='node3.html'"/>
 
     <!-- Text -->
-    <text class="node-text" x="90" y="25">Center</text>
-    <text class="node-text" x="50" y="70">Node 1</text>
-    <text class="node-text" x="90" y="70">Node 2</text>
-    <text class="node-text" x="130" y="70">Node 3</text>
+    <text class="node-text" x="90" y="20">Center</text>
+    <text class="node-text" x="50" y="60">Node 1</text>
+    <text class="node-text" x="90" y="60">Node 2</text>
+    <text class="node-text" x="130" y="60">Node 3</text>
 </svg>
 
 </body>
