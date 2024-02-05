@@ -5,85 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Flowchart</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+        .flowchart-svg {
+            display: block;
+            margin: auto;
+            width: 50vh; /* Adjust size as needed */
+            height: 50vh; /* Adjust size as needed */
         }
-
-        .flowchart {
-            position: relative;
-            width: 300px;
-            height: 300px;
+        .node {
+            fill: #f0f0f0;
+            stroke: #000;
+            cursor: pointer;
         }
-
-        .node, .center {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f0f0f0;
-            text-align: center;
-            color: #000;
-            text-decoration: none;
+        .node-text {
+            font-family: 'Arial', sans-serif;
+            text-anchor: middle;
+            dominant-baseline: central;
+            pointer-events: none;
         }
-
-        .center {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .node1 { top: 0; left: 50%; transform: translate(-50%, -30px); }
-        .node2 { top: 50%; left: 100%; transform: translate(-30px, -50%); }
-        .node3 { bottom: 0; left: 50%; transform: translate(-50%, 30px); }
-
-        .line {
-            position: absolute;
-            height: 2px;
-            background-color: #000;
-            transform-origin: 0 0;
-        }
-
-        .line1 {
-            top: 50%;
-            left: 50%;
-            width: 85px; /* Adjusted for precise length */
-            transform: translate(-50%, 0) rotate(-90deg);
-        }
-
-        .line2 {
-            top: 50%;
-            left: 50%;
-            width: 85px; /* Adjusted for precise length */
-            transform: translate(0%, -50%) rotate(0deg);
-        }
-
-        .line3 {
-            top: 50%;
-            left: 50%;
-            width: 85px; /* Adjusted for precise length */
-            transform: translate(-50%, 0) rotate(90deg);
+        .link {
+            stroke: #000;
+            stroke-width: 2;
         }
     </style>
 </head>
 <body>
 
-<div class="flowchart">
-    <div class="center">Center</div>
-    <a href="node1.html" class="node node1">Node 1</a>
-    <a href="node2.html" class="node node2">Node 2</a>
-    <a href="node3.html" class="node node3">Node 3</a>
-    <div class="line line1"></div>
-    <div class="line line2"></div>
-    <div class="line line3"></div>
-</div>
+<svg class="flowchart-svg" viewBox="0 0 200 200">
+    <!-- Links -->
+    <line class="link" x1="100" y1="100" x2="100" y2="30" />
+    <line class="link" x1="100" y1="100" x2="170" y2="100" />
+    <line class="link" x1="100" y1="100" x2="100" y2="170" />
+
+    <!-- Nodes -->
+    <circle class="node" cx="100" cy="30" r="20" onclick="location.href='node1.html'"/>
+    <circle class="node" cx="170" cy="100" r="20" onclick="location.href='node2.html'"/>
+    <circle class="node" cx="100" cy="170" r="20" onclick="location.href='node3.html'"/>
+    <circle class="node" cx="100" cy="100" r="20" />
+
+    <!-- Text -->
+    <text class="node-text" x="100" y="30">Node 1</text>
+    <text class="node-text" x="170" y="100">Node 2</text>
+    <text class="node-text" x="100" y="170">Node 3</text>
+    <text class="node-text" x="100" y="100">Center</text>
+</svg>
 
 </body>
 </html>
