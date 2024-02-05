@@ -5,39 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Flowchart</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
         .flowchart {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+        .node, .center {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
             text-align: center;
-            margin: 20px;
+        }
+
+        .center {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .node {
-            display: inline-block;
-            margin: 10px;
-            padding: 20px;
-            background-color: #f0f0f0;
-            color: #000;
             text-decoration: none;
-            transition: background-color 0.3s ease;
+            color: #000;
         }
 
-        .node:hover {
-            background-color: #e0e0e0;
+        .node1 { top: 0; left: 50%; transform: translate(-50%, -100%); }
+        .node2 { top: 50%; left: 100%; transform: translate(0%, -50%); }
+        .node3 { bottom: 0; left: 50%; transform: translate(-50%, 0%); }
+
+        .line {
+            position: absolute;
+            height: 2px;
+            background-color: #000;
+        }
+
+        .line1 {
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            transform-origin: left;
+            transform: rotate(-60deg);
+        }
+
+        .line2 {
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            transform-origin: left;
+            transform: rotate(60deg);
+        }
+
+        .line3 {
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            transform: translateX(-50%);
         }
     </style>
 </head>
 <body>
 
-<h1>Flowchart Overview</h1>
 <div class="flowchart">
-    <a href="node1.html" class="node">Node 1</a>
-    <a href="node2.html" class="node">Node 2</a>
-    <a href="node3.html" class="node">Node 3</a>
+    <div class="center">Center</div>
+    <a href="node1.html" class="node node1">Node 1</a>
+    <a href="node2.html" class="node node2">Node 2</a>
+    <a href="node3.html" class="node node3">Node 3</a>
+    <div class="line line1"></div>
+    <div class="line line2"></div>
+    <div class="line line3"></div>
 </div>
-
-<script>
-    // JavaScript code specific to the index page could go here
-    // For this example, there might not be a need for JavaScript on the main overview page
-</script>
 
 </body>
 </html>
