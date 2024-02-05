@@ -32,14 +32,14 @@
 </head>
 <body>
 
-<svg class="flowchart-svg" viewBox="0 0 180 160">
+<svg class="flowchart-svg" viewBox="0 0 180 200">
     <!-- Links -->
     <path class="link" d="M 90 20 C 75 40, 50 60, 50 80" />
     <path class="link" d="M 90 20 C 90 40, 90 60, 90 80" />
     <path class="link" d="M 90 20 C 105 40, 130 60, 130 80" />
-    <!-- New Links for additional Nodes -->
-    <path class="link" d="M 50 80 C 70 100, 70 120, 70 135" />
-    <path class="link" d="M 130 80 C 110 100, 110 120, 110 135" />
+    <!-- New Links for additional Nodes 4 and 5, connecting directly to the center -->
+    <path class="link" d="M 90 20 C 80 70, 70 120, 70 155" />
+    <path class="link" d="M 90 20 C 100 70, 110 120, 110 155" />
 
     <!-- Nodes -->
     <circle class="node" cx="90" cy="20" r="10" onclick="location.href='index.html'"/>
@@ -47,8 +47,8 @@
     <circle class="node" cx="90" cy="80" r="10" onclick="location.href='node2.html'"/>
     <circle class="node" cx="130" cy="80" r="10" onclick="location.href='node3.html'"/>
     <!-- Additional Nodes -->
-    <circle class="node" cx="70" cy="135" r="10" onclick="location.href='node4.html'"/>
-    <circle class="node" cx="110" cy="135" r="10" onclick="location.href='node5.html'"/>
+    <circle class="node" cx="70" cy="155" r="10" onclick="location.href='node4.html'"/>
+    <circle class="node" cx="110" cy="155" r="10" onclick="location.href='node5.html'"/>
 
     <!-- Text -->
     <text class="node-text" x="90" y="20">Center</text>
@@ -56,8 +56,8 @@
     <text class="node-text" x="90" y="80">Node 2</text>
     <text class="node-text" x="130" y="80">Node 3</text>
     <!-- Text for Additional Nodes -->
-    <text class="node-text" x="70" y="135">Node 4</text>
-    <text class="node-text" x="110" y="135">Node 5</text>
+    <text class="node-text" x="70" y="155">Node 4</text>
+    <text class="node-text" x="110" y="155">Node 5</text>
 </svg>
 
 <script>
