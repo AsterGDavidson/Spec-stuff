@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta viewport="width=device-width, initial-scale=1.0">
     <title>Interactive Flowchart</title>
     <style>
         .flowchart-svg {
@@ -21,7 +21,7 @@
             text-anchor: middle;
             dominant-baseline: middle;
             pointer-events: none;
-            font-size: 4px;
+            font-size: 4px; /* Adjust as needed */
         }
         .link {
             fill: none;
@@ -32,41 +32,30 @@
 </head>
 <body>
 
-<svg class="flowchart-svg" viewBox="0 0 180 220">
-    <!-- Halfway Links -->
-    <path class="link" d="M 90 20 Q 70 55, 70 55" />
-    <path class="link" d="M 90 20 Q 90 55, 90 55" />
-    <path class="link" d="M 90 20 Q 110 55, 110 55" />
-    <path class="link" d="M 90 20 Q 80 75, 80 75" />
-    <path class="link" d="M 90 20 Q 100 75, 100 75" />
+<svg class="flowchart-svg" viewBox="0 0 180 200">
+    <!-- Links -->
+    <path class="link" d="M 90 20 Q 70 55, 50 90" />
+    <path class="link" d="M 90 20 Q 90 55, 90 90" />
+    <path class="link" d="M 90 20 Q 110 55, 130 90" />
+    <path class="link" d="M 90 20 Q 80 75, 70 120" />
+    <path class="link" d="M 90 20 Q 100 75, 110 120" />
 
     <!-- Nodes -->
     <circle class="node" cx="90" cy="20" r="10" onclick="location.href='index.html'"/>
     <circle class="node" cx="50" cy="90" r="10" onclick="location.href='node1.html'"/>
     <circle class="node" cx="90" cy="90" r="10" onclick="location.href='node2.html'"/>
     <circle class="node" cx="130" cy="90" r="10" onclick="location.href='node3.html'"/>
-    <circle class="node" cx="70" cy="130" r="10" onclick="location.href='node4.html'"/>
-    <circle class="node" cx="110" cy="130" r="10" onclick="location.href='node5.html'"/>
+    <circle class="node" cx="70" cy="120" r="10" onclick="location.href='node4.html'"/>
+    <circle class="node" cx="110" cy="120" r="10" onclick="location.href='node5.html'"/>
 
     <!-- Text -->
     <text class="node-text" x="90" y="20">Center</text>
     <text class="node-text" x="50" y="90">Node 1</text>
     <text class="node-text" x="90" y="90">Node 2</text>
     <text class="node-text" x="130" y="90">Node 3</text>
-    <text class="node-text" x="70" y="130">Node 4</text>
-    <text class="node-text" x="110" y="130">Node 5</text>
+    <text class="node-text" x="70" y="120">Node 4</text>
+    <text class="node-text" x="110" y="120">Node 5</text>
 </svg>
-
-<script>
-    document.querySelectorAll('.node-text').forEach(function(text) {
-        const bbox = text.getBBox();
-        const radius = Math.sqrt(bbox.width * bbox.width + bbox.height * bbox.height) / 2 + 2;
-        const circle = document.querySelector('circle[cx="' + text.getAttribute('x') + '"][cy="' + text.getAttribute('y') + '"]');
-        if (circle) {
-            circle.setAttribute('r', radius);
-        }
-    });
-</script>
 
 </body>
 </html>
