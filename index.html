@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta viewport="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astrobiology Explorer</title>
     <style>
         body {
@@ -17,15 +17,34 @@
         }
 
         .concept-map {
-            text-align: center;
+            position: relative;
+            width: 600px;
+            height: 600px;
+            max-width: 90%;
+            margin: auto;
+        }
+
+        .center-node {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: #333;
+            z-index: 1;
         }
 
         .node {
+            position: absolute;
             display: inline-block;
-            margin: 10px;
-            padding: 20px;
+            padding: 10px 20px;
             background-color: #fff;
-            border-radius: 10px;
+            border-radius: 20px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             text-decoration: none;
             color: #333;
@@ -36,26 +55,61 @@
             background-color: #e0e0e0;
         }
 
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
+        /* Positioning nodes around the central node */
+        .node.spectroscopy { top: 0; left: 50%; transform: translate(-50%, -100%); }
+        .node.optical { right: 0; top: 50%; transform: translate(100%, -50%); }
+        .node.organic { bottom: 0; left: 50%; transform: translate(-50%, 100%); }
+        .node.procedures { left: 0; top: 50%; transform: translate(-100%, -50%); }
+        .node.astrobiology { bottom: 100px; left: 50%; transform: translate(-50%, 50%); }
+
+        /* Lines from center to nodes - Using :before pseudo-elements */
+        .node:before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: #000;
+            z-index: 0;
         }
 
-        p {
-            color: #666;
-            margin-bottom: 20px;
+        .spectroscopy:before { /* Top */
+            top: 100%; 
+            bottom: 100%;
+            left: 50%;
+        }
+
+        .optical:before { /* Right */
+            right: 100%; 
+            top: 50%; 
+            height: 2px;
+            width: 100%;
+        }
+
+        .organic:before { /* Bottom */
+            bottom: 100%; 
+            left: 50%;
+        }
+
+        .procedures:before { /* Left */
+            left: 100%; 
+            top: 50%; 
+            height: 2px;
+            width: 100%;
+        }
+
+        .astrobiology:before { /* Special case for additional bottom node */
+            content: none; /* Assuming direct connection might not be visually appealing, adjust as needed */
         }
     </style>
 </head>
 <body>
 
 <div class="concept-map">
-    <h1>Welcome to Astrobiology Explorer</h1>
-    <p>Explore the fascinating world of astrobiology and the instruments that uncover life's secrets. Click on a node to start your journey.</p>
-    <a href="spectroscopy.html" class="node">Spectroscopy</a>
-    <a href="optical-physics.html" class="node">Optical Physics</a>
-    <a href="biochemistry-astrobiology.html" class="node">Biochemistry & Astrobiology</a>
-    <a href="practical-procedures.html" class="node">Practical Procedures</a>
+    <a href="#" class="center-node">Life Detection</a>
+    <a href="spectroscopy.html" class="node spectroscopy">Spectroscopy</a>
+    <a href="optical-physics.html" class="node optical">Optical Physics</a>
+    <a href="organic-biochemistry.html" class="node organic">Organic and Biochemistry</a>
+    <a href="practical-procedures.html" class="node procedures">Practical Procedures</a>
+    <a href="astrobiology.html" class="node astrobiology">Astrobiology</a>
 </div>
 
 </body>
