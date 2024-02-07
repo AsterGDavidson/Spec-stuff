@@ -25,7 +25,7 @@
 
         .node, .center-node {
             position: absolute;
-            width: 120px; /* Adjust size as needed */
+            width: 120px;
             padding: 10px;
             background-color: #fff;
             border: 2px solid #000;
@@ -37,11 +37,16 @@
             text-decoration: none;
             color: #000;
             z-index: 10;
-            transition: background-color 0.3s ease; /* Added for hover effect */
+            transition: background-color 0.3s ease;
         }
 
         .node:hover, .center-node:hover {
-            background-color: #ddd; /* Hover effect */
+            background-color: #ddd;
+        }
+
+        .center-node {
+            top: 50%;
+            left: 50%;
         }
 
         svg {
@@ -57,33 +62,56 @@
             stroke: #000;
             stroke-width: 2;
         }
-
-        /* Dynamically calculate positions for equal angles */
-        .node.spectroscopy { top: 15%; left: 50%; } /* 0 degrees */
-        .node.optical { top: 50%; left: 85%; } /* 90 degrees */
-        .node.organic { top: 85%; left: 50%; } /* 180 degrees */
-        .node.procedures { top: 50%; left: 15%; } /* 270 degrees */
-        .node.astrobiology { top: 15%; left: 15%; } /* Adjusted for equal spacing */
     </style>
 </head>
 <body>
 
 <div class="concept-map-container">
     <svg>
-        <!-- Lines connecting the central node to each surrounding node, adjusted for equal angles -->
-        <line x1="50%" y1="50%" x2="50%" y2="15%" stroke="#000" stroke-width="2"></line> <!-- To Spectroscopy -->
-        <line x1="50%" y1="50%" x2="85%" y2="50%" stroke="#000" stroke-width="2"></line> <!-- To Optical Physics -->
-        <line x1="50%" y1="50%" x2="50%" y2="85%" stroke="#000" stroke-width="2"></line> <!-- To Organic and Biochemistry -->
-        <line x1="50%" y1="50%" x2="15%" y2="50%" stroke="#000" stroke-width="2"></line> <!-- To Practical Procedures -->
-        <line x1="50%" y1="50%" x2="15%" y2="15%" stroke="#000" stroke-width="2"></line> <!-- To Astrobiology -->
+        <!-- Using SVG to draw lines between nodes -->
     </svg>
-    <a href="#" class="center-node">Life Detection</a>
-    <a href="spectroscopy.html" class="node spectroscopy">Spectroscopy</a>
-    <a href="optical-physics.html" class="node optical">Optical Physics</a>
-    <a href="organic-biochemistry.html" class="node organic">Organic and Biochemistry</a>
-    <a href="practical-procedures.html" class="node procedures">Practical Procedures</a>
-    <a href="astrobiology.html" class="node astrobiology">Astrobiology</a>
+    <div class="center-node">Life Detection</div>
+    <!-- The nodes will be positioned using JavaScript -->
 </div>
+
+<script>
+    // JavaScript for adding nodes and lines with equal angles
+    const numberOfNodes = 5;
+    const angleIncrement = 360 / numberOfNodes; // Equal angles
+    const mapContainer = document.querySelector('.concept-map-container');
+    const svg = mapContainer.querySelector('svg');
+    const centerNode = document.querySelector('.center-node');
+    const centerNodeRadius = centerNode.offsetWidth / 2;
+    const mapRadius = mapContainer.offsetWidth / 2; // Adjust if needed
+    const nodeTitles = ['Astrobiology', 'Spectroscopy', 'Optical Physics', 'Practical Procedures', 'Organic and Biochemistry'];
+
+    for (let i = 0; i < numberOfNodes; i++) {
+        const angle = angleIncrement * i;
+        const radians = angle * (Math.PI / 180);
+        const x = centerNode.offsetLeft + mapRadius * Math.cos(radians);
+        const y = centerNode.offsetTop + mapRadius * Math.sin(radians);
+
+        // Create node element
+        const node = document.createElement('div');
+        node.className = 'node';
+        node.textContent = nodeTitles[i];
+        node.style.left = `${x}px`;
+        node.style.top = `${y}px`;
+        mapContainer.appendChild(node);
+
+        // Create line element
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        const x1 = centerNode.offsetLeft + centerNodeRadius;
+        const y1 = centerNode.offsetTop + centerNodeRadius;
+        const x2 = x + centerNodeRadius;
+        const y2 = y + centerNodeRadius;
+        line.setAttribute('x1', x1);
+        line.setAttribute('y1', y1);
+        line.setAttribute('x2', x2);
+        line.setAttribute('y2', y2);
+        svg.appendChild(line);
+    }
+</script>
 
 </body>
 </html>
