@@ -18,14 +18,14 @@
 
         .concept-map-container {
             position: relative;
-            width: 600px;
-            height: 600px;
+            width: 80vh; /* Responsive size */
+            height: 80vh;
             text-align: center;
         }
 
         .node, .center-node {
             position: absolute;
-            width: 120px;
+            width: 120px; /* Adjust size as needed */
             padding: 10px;
             background-color: #fff;
             border: 2px solid #000;
@@ -37,11 +37,11 @@
             text-decoration: none;
             color: #000;
             z-index: 10;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease; /* For hover effect */
         }
 
         .node:hover, .center-node:hover {
-            background-color: #ddd;
+            background-color: #ddd; /* Hover effect */
         }
 
         .center-node {
@@ -67,50 +67,43 @@
 <body>
 
 <div class="concept-map-container">
-    <svg>
-        <!-- Using SVG to draw lines between nodes -->
+    <svg id="lines-container">
+        <!-- SVG lines will be placed here by JavaScript -->
     </svg>
     <div class="center-node">Life Detection</div>
-    <!-- The nodes will be positioned using JavaScript -->
+    <!-- Node elements will be placed by JavaScript -->
 </div>
 
 <script>
-    // JavaScript for adding nodes and lines with equal angles
-    const numberOfNodes = 5;
-    const angleIncrement = 360 / numberOfNodes; // Equal angles
-    const mapContainer = document.querySelector('.concept-map-container');
-    const svg = mapContainer.querySelector('svg');
-    const centerNode = document.querySelector('.center-node');
-    const centerNodeRadius = centerNode.offsetWidth / 2;
-    const mapRadius = mapContainer.offsetWidth / 2; // Adjust if needed
-    const nodeTitles = ['Astrobiology', 'Spectroscopy', 'Optical Physics', 'Practical Procedures', 'Organic and Biochemistry'];
+    const center = { x: 50, y: 50 }; // Center of the SVG
+    const radius = 35; // Radius for node placement
+    const nodeNames = ['Astrobiology', 'Spectroscopy', 'Optical Physics', 'Practical Procedures', 'Organic and Biochemistry'];
+    const svgNS = "http://www.w3.org/2000/svg";
+    const linesContainer = document.getElementById("lines-container");
+    const angleIncrement = 360 / nodeNames.length; // Equal angles
 
-    for (let i = 0; i < numberOfNodes; i++) {
-        const angle = angleIncrement * i;
-        const radians = angle * (Math.PI / 180);
-        const x = centerNode.offsetLeft + mapRadius * Math.cos(radians);
-        const y = centerNode.offsetTop + mapRadius * Math.sin(radians);
+    nodeNames.forEach((name, index) => {
+        const angle = angleIncrement * index - 90; // Adjust starting angle
+        const radians = angle * Math.PI / 180;
+        const nodeX = center.x + radius * Math.cos(radians);
+        const nodeY = center.y + radius * Math.sin(radians);
+
+        // Create SVG line
+        const line = document.createElementNS(svgNS, 'line');
+        line.setAttribute('x1', `${center.x}%`);
+        line.setAttribute('y1', `${center.y}%`);
+        line.setAttribute('x2', `${nodeX}%`);
+        line.setAttribute('y2', `${nodeY}%`);
+        linesContainer.appendChild(line);
 
         // Create node element
         const node = document.createElement('div');
-        node.className = 'node';
-        node.textContent = nodeTitles[i];
-        node.style.left = `${x}px`;
-        node.style.top = `${y}px`;
-        mapContainer.appendChild(node);
-
-        // Create line element
-        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        const x1 = centerNode.offsetLeft + centerNodeRadius;
-        const y1 = centerNode.offsetTop + centerNodeRadius;
-        const x2 = x + centerNodeRadius;
-        const y2 = y + centerNodeRadius;
-        line.setAttribute('x1', x1);
-        line.setAttribute('y1', y1);
-        line.setAttribute('x2', x2);
-        line.setAttribute('y2', y2);
-        svg.appendChild(line);
-    }
+        node.classList.add('node');
+        node.textContent = name;
+        node.style.left = `${nodeX}%`;
+        node.style.top = `${nodeY}%`;
+        document.querySelector('.concept-map-container').appendChild(node);
+    });
 </script>
 
 </body>
