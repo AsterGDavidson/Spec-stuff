@@ -71,18 +71,24 @@
         <!-- SVG lines will be placed here by JavaScript -->
     </svg>
     <div class="center-node">Life Detection</div>
-    <!-- Node elements will be placed by JavaScript -->
+    <!-- Node anchor elements will be placed by JavaScript -->
 </div>
 
 <script>
     const center = { x: 50, y: 50 }; // Center of the SVG
     const radius = 35; // Radius for node placement
-    const nodeNames = ['Astrobiology', 'Spectroscopy', 'Optical Physics', 'Practical Procedures', 'Organic and Biochemistry'];
+    const nodeData = [
+        { name: 'Astrobiology', url: 'astrobiology.html' },
+        { name: 'Spectroscopy', url: 'spectroscopy.html' },
+        { name: 'Optical Physics', url: 'optical-physics.html' },
+        { name: 'Practical Procedures', url: 'practical-procedures.html' },
+        { name: 'Organic and Biochemistry', url: 'organic-biochemistry.html' }
+    ];
     const svgNS = "http://www.w3.org/2000/svg";
     const linesContainer = document.getElementById("lines-container");
-    const angleIncrement = 360 / nodeNames.length; // Equal angles
+    const angleIncrement = 360 / nodeData.length; // Equal angles
 
-    nodeNames.forEach((name, index) => {
+    nodeData.forEach((node, index) => {
         const angle = angleIncrement * index - 90; // Adjust starting angle
         const radians = angle * Math.PI / 180;
         const nodeX = center.x + radius * Math.cos(radians);
@@ -96,13 +102,14 @@
         line.setAttribute('y2', `${nodeY}%`);
         linesContainer.appendChild(line);
 
-        // Create node element
-        const node = document.createElement('div');
-        node.classList.add('node');
-        node.textContent = name;
-        node.style.left = `${nodeX}%`;
-        node.style.top = `${nodeY}%`;
-        document.querySelector('.concept-map-container').appendChild(node);
+        // Create node anchor element
+        const nodeElement = document.createElement('a');
+        nodeElement.classList.add('node');
+        nodeElement.textContent = node.name;
+        nodeElement.href = node.url;
+        nodeElement.style.left = `${nodeX}%`;
+        nodeElement.style.top = `${nodeY}%`;
+        document.querySelector('.concept-map-container').appendChild(nodeElement);
     });
 </script>
 
