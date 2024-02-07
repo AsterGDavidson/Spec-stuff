@@ -44,11 +44,12 @@
             left: 50%;
         }
 
+        /* Positioning nodes around the central node */
         .node.spectroscopy { top: 10%; left: 50%; }
-        .node.optical { top: 50%; left: 90%; }
-        .node.organic { top: 90%; left: 50%; }
-        .node.procedures { top: 50%; left: 10%; }
-        .node.astrobiology { top: 70%; left: 50%; }
+        .node.optical { top: 50%; left: 85%; }
+        .node.organic { top: 80%; left: 50%; }
+        .node.procedures { top: 50%; left: 15%; }
+        .node.astrobiology { top: 30%; left: 15%; }
 
         svg {
             position: absolute;
@@ -69,11 +70,12 @@
 
 <div class="concept-map-container">
     <svg>
+        <!-- Lines connecting the central node to each surrounding node -->
         <line x1="50%" y1="50%" x2="50%" y2="10%" stroke="#000" stroke-width="2"></line> <!-- To Spectroscopy -->
-        <line x1="50%" y1="50%" x2="90%" y2="50%" stroke="#000" stroke-width="2"></line> <!-- To Optical Physics -->
-        <line x1="50%" y1="50%" x2="50%" y2="90%" stroke="#000" stroke-width="2"></line> <!-- To Organic and Biochemistry -->
-        <line x1="50%" y1="50%" x2="10%" y2="50%" stroke="#000" stroke-width="2"></line> <!-- To Practical Procedures -->
-        <line x1="50%" y1="50%" x2="50%" y2="70%" stroke="#000" stroke-width="2"></line> <!-- To Astrobiology -->
+        <line x1="50%" y1="50%" x2="85%" y2="50%" stroke="#000" stroke-width="2"></line> <!-- To Optical Physics -->
+        <line x1="50%" y1="50%" x2="50%" y2="80%" stroke="#000" stroke-width="2"></line> <!-- To Organic and Biochemistry -->
+        <line x1="50%" y1="50%" x2="15%" y2="50%" stroke="#000" stroke-width="2"></line> <!-- To Practical Procedures -->
+        <line x1="50%" y1="50%" x2="15%" y2="30%" stroke="#000" stroke-width="2"></line> <!-- To Astrobiology -->
     </svg>
     <a href="#" class="center-node">Life Detection</a>
     <a href="spectroscopy.html" class="node spectroscopy">Spectroscopy</a>
